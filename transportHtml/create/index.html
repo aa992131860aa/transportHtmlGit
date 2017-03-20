@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="TransBox">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/jquery-1.12.3.min.js"></script>
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/angular.min.js"></script>
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/angular-ui-router.min.js"></script>
+
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/lib/core-min.js"></script>
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/lib/enc-base64-min.js"></script>
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/lib/hmac-sha256.js"></script>
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/lib/sha256.js"></script>
+
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/mui.min.js"></script>
+    <script src="http://ojzaugtxx.bkt.clouddn.com/js/mui.picker.min.js"></script>
+    <link href="http://ojzaugtxx.bkt.clouddn.com/js/css/mui.min.css" rel="stylesheet"/>
+    <link href="http://ojzaugtxx.bkt.clouddn.com/js/css/mui.picker.min.css" rel="stylesheet"/>
+
+    <link href="css/ts.css" rel="stylesheet"/>
+
+    <script src="js/app.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/service.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        .detail {
+            height: 100%;
+            background: #FFFFFF;
+        }
+
+    </style>
+</head>
+<body ng-controller="InController">
+
+<div class="detail" ui-view></div>
+
+</body>
+</html>

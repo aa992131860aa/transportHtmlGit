@@ -1,0 +1,404 @@
+<div class="mui-content" style="background: #FFFFFF;height: 100%;position: static">
+
+    <style type="text/css" scoped>
+        #fp-nav ul li a.active span, .fp-slidesNav ul li a.active span {
+            background: #2E8FE0 !important; /*活动导航的颜色*/
+        }
+
+        #fp-nav ul li a span, .fp-slidesNav ul li a span {
+            background: #dddddd !important; /*非活动导航的颜色*/
+            height: 8px !important;
+            width: 8px !important;
+            margin: -4px 0 0 -4px !important;
+        }
+
+        path {
+            stroke-width: 1 !important;
+        }
+
+        circle {
+            stroke-width: 0 !important;
+            r: 1 !important;
+        }
+    </style>
+
+    <div ng-if="data.pageState == 1" style="height: calc(100% - 40px);overflow-y: auto;padding: 5%">
+
+        <div class="pre-div-blue">器官基本信息</div>
+        <div>
+            <span class="pre-span-weight">器官段号:</span>
+            <span class="pre-span-weight-float" ng-bind="info.organInfo.segNumber"></span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">获取时间:</span>
+            <span class="pre-span-weight-float" ng-bind="info.getOrganAtShow"></span>
+        </div>
+
+
+        <div class="pre-div-blue">器官血型信息</div>
+        <div>
+            <span class="pre-span-weight">器官种类:</span>
+            <span class="pre-span-weight-float" ng-bind="info.organInfo.type"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">器官数量:</span>
+            <span class="pre-span-weight-float" ng-bind="info.organCount"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">血型:</span>
+            <span class="pre-span-weight-float" ng-bind="info.organInfo.bloodType"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">血液样本数量:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.organInfo.bloodSampleCount"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">组织样本类型:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.organInfo.organizationSampleType"></span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">组织样本数量:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.organInfo.organizationSampleCount"></span>
+        </div>
+
+
+        <div class="pre-div-blue">转运单管理</div>
+        <div>
+            <span class="pre-span-weight">转运起始地:</span>
+            <span class="pre-span-weight-float" ng-bind="info.fromCity"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">转运目的地:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.toHospitalInfo.name" style="text-overflow: ellipsis"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">转运方式:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.tracfficType"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">航班/车号:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.tracfficNumber"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">转运人:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.transferPersonInfo.name"></span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">电话:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.transferPersonInfo.phone"></span>
+        </div>
+
+        <div class="pre-div-blue">OPO组织信息</div>
+        <div>
+            <span class="pre-span-weight">获取组织:</span>
+            <span class="pre-span-weight-float" ng-bind="info.opoInfo.name"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">联系人:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.opoInfo.contactPerson"></span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">电话:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="info.opoInfo.contactPhone"></span>
+        </div>
+
+    </div>
+
+    <div ng-if="data.pageState == 2">
+
+        <div full-page options="mainOptions">
+            <div class="section">
+                <!--page1-->
+
+                <div style="padding: 10% 5%">
+                    <div>
+                        <span class="way-span">最高温度:</span>
+                        <span class="way-span-color"
+                              ng-class="data.temperature.max >=1 && data.temperature.max<=4 ?
+                               'way-span-color' : 'way-span-color-warning'"
+                              ng-bind="data.temperature.max"></span>
+                        <span class="way-span">最高湿度:</span>
+                        <span class="way-span-color-right" ng-bind="data.humidity.max"></span>
+                    </div>
+                    <div>
+                        <span class="way-span">最低温度:</span>
+                        <span ng-class="data.temperature.min >=1 && data.temperature.min<=4 ?
+                               'way-span-color' : 'way-span-color-warning'"
+                              ng-bind="data.temperature.min"></span>
+                        <span class="way-span">最低湿度:</span>
+                        <span class="way-span-color-right" ng-bind="data.humidity.min"></span>
+                    </div>
+
+                    <div>
+                        <span class="way-span">平均温度:</span>
+                        <span ng-class="info.records[info.records.length-1].avgTemperature >=1 && info.records[info.records.length-1].avgTemperature<=4 ?
+                               'way-span-color' : 'way-span-color-warning'"
+                              ng-bind="info.records[info.records.length-1].avgTemperature?info.records[info.records.length-1].avgTemperature+'℃':''"></span>
+                        <span class="way-span">平均湿度:</span>
+                        <span class="way-span-color-right"
+                              ng-bind="data.humidity.avg?data.humidity.avg:''"></span>
+                    </div>
+
+                    <div style="height: 1px;width: 100%;background: #D9D9D9;margin-bottom: 15px;margin-top: 15px;float: right"></div>
+
+                    <div>
+                        <span class="way-span">碰撞次数:</span>
+                        <span ng-class="data.collisionData.length > 0? 'way-span-color-warning' : 'way-span-color'"
+                              ng-bind="data.collisionData.length == 0? '0次' : data.collisionData.length+'次'"></span>
+                        <span class="way-span">开箱次数:</span>
+                        <span class="way-span-color-right"
+                              ng-bind="data.openData.length == 0? '0次' : data.openData.length+'次'"></span>
+                    </div>
+                    <div>
+                        <span class="way-span">当前位置:</span>
+                        <span class="way-span-color"
+                              ng-bind="info.records[info.records.length-1].currentCity"></span>
+                        <span class="way-span">剩余距离:</span>
+                        <span class="way-span-color-right"
+                              ng-bind="info.records[info.records.length-1].distance"></span>
+                    </div>
+                    <div>
+                        <span class="way-span">剩余电量:</span>
+                        <span class="way-span-color"
+                              ng-bind="info.records[info.records.length-1].power"></span>
+                        <span class="way-span">消耗电量:</span>
+                        <span class="way-span-color-right"
+                              ng-bind="info.records[info.records.length-1].expendPower"></span>
+                    </div>
+                    <div>
+                        <span class="way-span">开始时间:</span>
+                        <span class="way-span-color" ng-bind="info.startAtShow"></span>
+                        <span class="way-span">持续时间:</span>
+                        <span class="way-span-color-right"
+                              ng-bind="info.records[info.records.length-1].duration"></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="section">
+
+                <!--page2 温度-->
+
+                <div style="padding: 10% 5%">
+                    <div style="text-align: center">
+                        <span class="span-left">最高温度
+                        </span>
+                        <span class="span-middle">最低温度
+                        </span>
+                        <span class="span-right">平均温度
+                        </span>
+                    </div>
+
+                    <div style="text-align: center">
+                        <span class="span-left" ng-bind="data.temperature.max"
+                              ng-class="data.temperature.max >=1 && data.temperature.max<=4 ?
+                               'temp-color' : 'temp-color-warning'">
+                        </span>
+                        <span class="span-middle" ng-bind="data.temperature.min"
+                              ng-class="data.temperature.min >=1 && data.temperature.min<=4 ?
+                               'temp-color' : 'temp-color-warning'">
+                        </span>
+                        <span class="span-right"
+                              ng-class="info.records[info.records.length-1].avgTemperature >=1 && info.records[info.records.length-1].avgTemperature<=4 ?
+                               'temp-color' : 'temp-color-warning'"
+                              ng-bind="info.records[info.records.length-1].avgTemperature?info.records[info.records.length-1].avgTemperature+'℃':''">
+                        </span>
+                    </div>
+
+                    <div class="onway-morris-content">
+                        <div class="ms-title">温度监控显示（℃）</div>
+                        <div
+                                line-chart
+                                line-data='lineData'
+                                line-xkey='y'
+                                line-ykeys='["a"]'
+                                line-labels='["当前"]'
+                                line-colors='colors'
+                                line-date-format="initDate">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="section">
+
+                <!--page3 适度-->
+
+                <div style="padding: 10% 5%">
+                    <div style="text-align: center">
+                        <span class="span-left">最高湿度
+                        </span>
+                        <span class="span-middle">最低湿度
+                        </span>
+                        <span class="span-right">平均湿度
+                        </span>
+                    </div>
+
+                    <div style="text-align: center">
+                        <span class="span-left color-blue" ng-bind="data.humidity.max">
+                        </span>
+                        <span class="span-middle color-blue" ng-bind="data.humidity.min">
+                        </span>
+                        <span class="span-right color-blue"
+                              ng-bind="data.humidity.avg?data.humidity.avg:''">
+                        </span>
+                    </div>
+
+                    <div class="onway-morris-content">
+                        <div class="ms-title">湿度监控显示（%）</div>
+                        <div
+                                line-chart
+                                line-data='lineModerationData'
+                                line-xkey='y'
+                                line-ykeys='["a"]'
+                                line-labels='["当前(%)"]'
+                                line-colors='colors'
+                                line-date-format="initDate">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="section">
+                <!--page4-->
+
+                <div style="padding: 10% 5%;height: 100%">
+
+                    <div>
+                        <span class="way-span-weight">当前位置:
+                            <span class="color-blue"
+                                  ng-bind="info.records[info.records.length-1].currentCity"></span>
+                        </span>
+                        <span class="way-span-weight-float">剩余距离:
+                            <span class="color-blue"
+                                  ng-bind="info.records[info.records.length-1].distance"></span>
+                        </span>
+                    </div>
+
+                    <div id="map" style="height: calc(100% - 70px);width: inherit"></div>
+
+                    <script type="text/javascript">
+                        var mapObj;
+                        var recordData;
+
+                        var scope = angular.element($("#map")).scope();
+                        var data = scope.info;
+                        if (data) {
+                            recordData = data.records;
+
+                            if (recordData.length > 0) {
+
+                                function mapInit() {
+                                    for (var i = 0; i < recordData.length; i++) {
+                                        var item = recordData[i];
+                                        if (item.longitude && item.latitude) {
+                                            mapObj = new AMap.Map('map', {
+                                                dragEnable: false,
+                                                zoomEnable: false,
+                                                zoom: 10,
+                                                center: [item.longitude, item.latitude]
+                                            });
+                                            AMap.event.addListener(mapObj, "complete", completeEventHandler);
+
+                                            return;
+                                        }
+                                    }
+                                }
+
+                                mapInit();
+
+                                function completeEventHandler() {
+                                    lineArr = new Array();
+
+                                    for (var i = 0; i < recordData.length; i++) {
+                                        var item = recordData[i];
+                                        if (item.longitude && item.latitude) {
+                                            lineArr.push(new AMap.LngLat(item.longitude, item.latitude));
+
+                                            marker = new AMap.Marker({
+                                                map: mapObj,
+                                                position: new AMap.LngLat(item.longitude, item.latitude),//基点位置
+                                                title: item.temperature
+                                            });
+                                        }
+                                    }
+
+                                    var polyline = new AMap.Polyline({
+                                        map: mapObj,
+                                        path: lineArr,
+                                        strokeColor: "#379DF2",//线颜色
+                                        strokeOpacity: 1,//线透明度
+                                        strokeWeight: 3,//线宽
+                                        strokeStyle: "solid"//线样式
+                                    });
+                                    mapObj.setFitView();
+
+                                }
+
+                            }
+                        }
+
+                    </script>
+
+                </div>
+
+            </div>
+            <div class="section">
+                <!--page5-->
+
+                <div style="padding: 10% 5%">
+
+                    <div>
+                        <span class="way-span-weight">开箱次数:
+                            <span class="color-blue"
+                                  ng-bind="data.openData.length == 0? '0次' : data.openData.length+'次'"></span>
+                        </span>
+                        <span class="way-span-weight-float">碰撞次数:
+                            <span class="color-blue"
+                                  ng-class="data.collisionData.length > 0? 'temp-color-warning' : 'temp-color'"
+                                  ng-bind="data.collisionData.length == 0? '0次' : data.collisionData.length+'次'"></span>
+                        </span>
+                    </div>
+
+                    <div class="onway-morris-content" style="padding: 10px;">
+                        <div>
+                            <span class="crash-span-weight">开箱时间</span>
+                            <span class="crash-span-weight-float">碰撞时间</span>
+                        </div>
+
+                        <div style="border-top: 1px #D9D9D9 solid"
+                             ng-repeat="info in data.crashData">
+                            <span class="crash-span-weight"
+                                  ng-bind="getShowtime(info.oInfo)"></span>
+                            <span class="crash-span-weight-float"
+                                  ng-bind="getShowtime(info.cInfo)"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="position: fixed;bottom: 0;width: 100%">
+        <button type="button" class="mui-btn mui-btn-block btn-query btn-active re-heigh"
+                ng-click="viewBaseInfo()" id="base">基本信息查看
+        </button>
+        <button type="button" class="mui-btn mui-btn-block btn-query re-heigh"
+                style="float: right" ng-click="viewTransInfo()" id="trans">监控信息查看
+        </button>
+    </div>
+
+</div>

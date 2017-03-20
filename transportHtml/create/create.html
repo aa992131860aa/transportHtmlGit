@@ -1,0 +1,405 @@
+<div class="mui-content common-content">
+
+    <div ng-show="data.pageState == 1">
+        <div class="color-yellow" style="margin-bottom: 10px;">器官基本信息</div>
+        <input type="text" class="mui-input-clear create-h" placeholder="请输入器官段号"
+               style="margin-bottom: 8px;"
+               ng-model="data.CreateOrganInfo.segNumber">
+        <div class="desc-div">器官段号可在红十字会的二维码或器官确认书中获得</div>
+
+        <div id="inDate">
+            <div class="create-title">获取时间（点击修改）</div>
+
+            <div class="create-gettime">
+                <span id="time"></span>
+                <span id="upTime" ng-bind="data.CreateBaseInfo.getOrganAt"
+                      style="display: none"></span>
+            </div>
+
+        </div>
+
+        <div class="color-yellow" style="margin-top: 15px;margin-bottom: 10px;">器官血型信息</div>
+        <div>
+            <span class="span-weight">器官种类</span>
+            <span class="span-weight-float">器官数量</span>
+        </div>
+        <div>
+		<span class="span-arrow">
+			<input type="text" class="mui-input-clear input-arrow"
+                   ng-model="data.CreateOrganInfo.type" id="id_orgType">
+			<a href="#pop_orgType">
+				<img src="img/arrow_down.png" class="img-arrow"/>
+			</a>
+		</span>
+
+            <span class="span-arrow" style="float: right;">
+			<span class="num-down" ng-click="tvDown(0)">-</span>
+            <input type="text" class="mui-input-clear input-arrow-num" style="text-align: center;"
+                   readonly
+                   ng-model="data.CreateBaseInfo.organCount">
+            <span class="num-up" ng-click="tvUp(0)">+</span>
+        </span>
+        </div>
+
+        <div>
+            <span class="span-weight">血型</span>
+            <span class="span-weight-float">血液样本数量</span>
+        </div>
+        <div>
+		<span class="span-arrow">
+			<input type="text" class="mui-input-clear input-arrow"
+                   ng-model="data.CreateOrganInfo.bloodType" id="id_bloodType">
+			<a href="#pop_bloodType">
+				<img src="img/arrow_down.png" class="img-arrow"/>
+			</a>
+		</span>
+            <span class="span-arrow" style="float: right;">
+			<span class="num-down" ng-click="tvDown(1)">-</span>
+            <input type="text" class="mui-input-clear input-arrow-num" style="text-align: center;"
+                   readonly
+                   ng-model="data.CreateOrganInfo.bloodSampleCount">
+            <span class="num-up" ng-click="tvUp(1)">+</span>
+        </span>
+        </div>
+        <div>
+            <span class="span-weight">组织样本类型</span>
+            <span class="span-weight-float">组织样本数量</span>
+        </div>
+        <div style="margin-bottom: 30px;">
+        <span class="span-arrow">
+			<input type="text" class="mui-input-clear input-arrow"
+                   ng-model="data.CreateOrganInfo.organizationSampleType" id="id_orgSmapleType">
+			<a href="#pop_orgSmapleType">
+				<img src="img/arrow_down.png" class="img-arrow"/>
+			</a>
+		</span>
+            <span class="span-arrow" style="float: right;">
+			<span class="num-down" ng-click="tvDown(2)">-</span>
+            <input type="text" class="mui-input-clear input-arrow-num" style="text-align: center;"
+                   readonly
+                   ng-model="data.CreateOrganInfo.organizationSampleCount">
+            <span class="num-up" ng-click="tvUp(2)">+</span>
+        </span>
+        </div>
+
+        <button type="button" class="mui-btn mui-btn-block submit-btn create-h" ng-click="next()">
+            下一步
+        </button>
+    </div>
+
+    <div ng-show="data.pageState == 2">
+        <div class="color-yellow" style="margin-bottom: 10px;">转运单管理</div>
+        <div>
+            <span class="span-weight">转运起始地</span>
+            <span class="span-weight-float">转运目的地</span>
+        </div>
+        <div>
+            <input type="text" class="mui-input-clear input-weight"
+                   ng-model="data.CreateBaseInfo.fromCity">
+            <input type="text" class="mui-input-clear input-weight-float"
+                   style="text-overflow: ellipsis"
+                   ng-model="data.CreateTransToInfo.toHospName">
+        </div>
+        <div>
+            <span class="span-weight">转运方式</span>
+            <span class="span-weight-float">航班/车号(选填)</span>
+        </div>
+        <div>
+            <span class="span-arrow">
+			    <input type="text" class="mui-input-clear input-arrow"
+                       ng-model="data.CreateBaseInfo.tracfficType" id="id_tracfficType">
+                    <a href="#pop_tracfficType">
+                        <img src="img/arrow_down.png" class="img-arrow"/>
+                    </a>
+		    </span>
+            <input type="text" class="mui-input-clear input-weight-float"
+                   ng-model="data.CreateBaseInfo.tracfficNumber">
+        </div>
+        <div>
+            <span class="span-weight">转运人</span>
+            <span class="span-weight-float">电话</span>
+        </div>
+        <div>
+            <span class="span-arrow">
+			    <input type="text" class="mui-input-clear input-arrow"
+                       ng-model="data.CreateTransPersonInfo.name">
+                    <a href="#pop_transPerson" ng-show="data.transPersonData.length > 0">
+                        <img src="img/arrow_down.png" class="img-arrow"/>
+                    </a>
+		    </span>
+            <input type="text" class="mui-input-clear input-weight-float"
+                   ng-model="data.CreateTransPersonInfo.phone">
+        </div>
+
+        <div class="color-yellow" style="margin-bottom: 10px;">OPO组织信息</div>
+        <div class="create-title">获取组织</div>
+        <div class="div-arrow">
+            <input type="text" class="mui-input-clear input-arrow" readonly
+                   ng-model="data.CreateOpoInfo.name">
+            <a href="#pop_opoInfo">
+                <img src="img/arrow_down.png" class="img-arrow"/>
+            </a>
+        </div>
+
+        <div>
+            <span class="span-weight">联系人</span>
+            <span class="span-weight-float">电话</span>
+        </div>
+        <div>
+            <input type="text" class="mui-input-clear input-weight" readonly
+                   ng-model="data.CreateOpoInfo.contactPerson">
+            <input type="text" class="mui-input-clear input-weight-float" readonly
+                   ng-model="data.CreateOpoInfo.contactPhone">
+        </div>
+
+        <div class="color-yellow" style="margin-bottom: 10px;">请设置4位开箱密码</div>
+        <div class="create-title">密码有效期至本次转运结束</div>
+        <div style="margin-bottom: 30px;">
+            <input class="mui-input-clear input-weight" placeholder="开箱密码" ng-model="data.pwd1"
+                   type="number" style="ime-mode:disabled" onpaste="return false"
+                   onkeypress="keyPress()" oninput="if(value.length>4)value=value.slice(0,4)"
+            >
+            <input class="mui-input-clear input-weight-float" placeholder="再次确认"
+                   ng-model="data.pwd2"
+                   type="number" style="ime-mode:disabled" onpaste="return false"
+                   onkeypress="keyPress()" oninput="if(value.length>4)value=value.slice(0,4)"
+            >
+        </div>
+
+        <button type="button" class="mui-btn mui-btn-block back-btn-outlined create-h"
+                ng-click="back()">返
+            回
+        </button>
+        <button type="button" class="mui-btn mui-btn-block submit-btn create-h"
+                ng-click="preView()">预 览
+        </button>
+    </div>
+
+    <div ng-show="data.pageState == 3">
+        <div class="pre-div-blue">器官基本信息</div>
+        <div>
+            <span class="pre-span-weight">器官段号:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateOrganInfo.segNumber"></span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">获取时间:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateBaseInfo.getOrganAt"></span>
+        </div>
+
+
+        <div class="pre-div-blue">器官血型信息</div>
+        <div>
+            <span class="pre-span-weight">器官种类:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateOrganInfo.type"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">器官数量:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateBaseInfo.organCount"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">血型:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateOrganInfo.bloodType"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">血液样本数量:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="data.CreateOrganInfo.bloodSampleCount"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">组织样本类型:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="data.CreateOrganInfo.organizationSampleType"></span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">组织样本数量:</span>
+            <span class="pre-span-weight-float"
+                  ng-bind="data.CreateOrganInfo.organizationSampleCount"></span>
+        </div>
+
+
+        <div class="pre-div-blue">转运单管理</div>
+        <div>
+            <span class="pre-span-weight">转运起始地:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateBaseInfo.fromCity"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">转运目的地:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateTransToInfo.toHospName"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">转运方式:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateBaseInfo.tracfficType"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">航班/车号:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateBaseInfo.tracfficNumber"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">转运人:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateTransPersonInfo.name"></span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">电话:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateTransPersonInfo.phone"></span>
+        </div>
+
+
+        <div class="pre-div-blue">OPO组织信息</div>
+        <div>
+            <span class="pre-span-weight">获取组织:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateOpoInfo.name"></span>
+        </div>
+        <div>
+            <span class="pre-span-weight">联系人:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateOpoInfo.contactPerson"></span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">电话:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateOpoInfo.contactPhone"></span>
+        </div>
+
+        <div class="pre-div-blue">开箱密码信息</div>
+        <div style="margin-bottom: 15px">
+            <span class="pre-span-weight">开箱密码:</span>
+            <span class="pre-span-weight-float" ng-bind="data.CreateBaseInfo.boxPin"></span>
+        </div>
+
+        <button type="button" class="mui-btn mui-btn-block back-btn-outlined create-h"
+                ng-click="editTrans()">返
+            回
+        </button>
+        <button type="button" class="mui-btn mui-btn-block submit-btn create-h"
+                ng-click="commitTrans()">
+            确认并推送信息值转运箱
+        </button>
+    </div>
+
+</div>
+
+<div id="pop_orgType" class="mui-popover">
+    <ul class="mui-table-view mui-table-view-radio">
+        <li class="mui-table-view-cell" ng-repeat="item in data.keyData.organ track by $index"
+            ng-click="choiceOrgType($index)">
+            <a class="mui-navigate-right">
+                {{item}}
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="pop_bloodType" class="mui-popover">
+    <ul class="mui-table-view mui-table-view-radio">
+        <li class="mui-table-view-cell" ng-repeat="item in data.keyData.bloodType track by $index"
+            ng-click="choiceBloodType($index)">
+            <a class="mui-navigate-right">
+                {{item}}
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="pop_orgSmapleType" class="mui-popover">
+    <ul class="mui-table-view mui-table-view-radio">
+        <li class="mui-table-view-cell"
+            ng-repeat="item in data.keyData.organisationSample track by $index"
+            ng-click="choiceOrgSmapleType($index)">
+            <a class="mui-navigate-right">
+                {{item}}
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="pop_opoInfo" class="mui-popover">
+    <ul class="mui-table-view mui-table-view-radio">
+        <li class="mui-table-view-cell"
+            ng-repeat="item in data.opoData track by $index"
+            ng-click="choiceOpo($index)">
+            <a class="mui-navigate-right" style="text-overflow: ellipsis">
+                {{item.name}}&nbsp;{{item.contactPerson}}&nbsp;{{item.contactPhone}}
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="pop_tracfficType" class="mui-popover">
+    <ul class="mui-table-view mui-table-view-radio">
+        <li class="mui-table-view-cell"
+            ng-repeat="item in data.keyData.tracfficType track by $index"
+            ng-click="choiceTracfficType($index)">
+            <a class="mui-navigate-right">
+                {{item}}
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="pop_transPerson" class="mui-popover">
+    <ul class="mui-table-view mui-table-view-radio">
+        <li class="mui-table-view-cell"
+            ng-repeat="item in data.transPersonData track by $index"
+            ng-click="choiceTransPerson($index)">
+            <a class="mui-navigate-right">
+                {{item.name}}&nbsp;&nbsp;{{item.phone}}
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript" charset="UTF-8">
+    mui.init();
+    mui.ready(function () {
+
+        // in date
+        var aTag = document.getElementById("inDate");
+        aTag.addEventListener('tap', function () {
+//            document.activeElement.blur();
+
+            var id = this.getAttribute('id');
+            var picker = new mui.DtPicker({
+                type: "datetime",
+                beginDate: getCurrentMonthFirst(),
+                endDate: getCurrentMonthLast()
+            });
+            picker.show(function (rs) {
+                $('#time').text(rs.text);
+                $('#upTime').text(rs.text + ":00");
+
+                picker.dispose();
+            });
+        });
+
+        /**
+         * 获取当前月的第一天
+         */
+        function getCurrentMonthFirst() {
+            var date = new Date();
+            date.setDate(1);
+            return date;
+        }
+
+        /**
+         * 获取当前月的最后一天
+         */
+        function getCurrentMonthLast() {
+            var date = new Date();
+            var currentMonth = date.getMonth();
+            var nextMonth = ++currentMonth;
+            var nextMonthFirstDay = new Date(date.getFullYear(), nextMonth, 1);
+            var oneDay = 1000 * 60 * 60 * 24;
+            return new Date(nextMonthFirstDay - oneDay);
+        }
+
+    });
+
+    /* script */
+    function keyPress() {
+        var keyCode = event.keyCode;
+        if (keyCode >= 48 && keyCode <= 57) {
+            event.returnValue = true;
+        } else {
+            event.returnValue = false;
+        }
+    }
+
+</script>

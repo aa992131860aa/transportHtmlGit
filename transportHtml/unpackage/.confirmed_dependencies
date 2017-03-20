@@ -1,0 +1,20 @@
+{
+	"index.html": {
+		"resources": [
+			"js/lib/sha256.js",
+			"js/lib/core-min.js",
+			"js/app.js",
+			"js/lib/enc-base64-min.js",
+			"js/service.js",
+			"js/lib/hmac-sha256.js",
+			"js/jquery-1.12.3.min.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/controller.js",
+			"js/angular-animate.js",
+			"js/angular-ui-router.min.js",
+			"js/angular.min.js",
+			"css/ts.css"
+		]
+	}
+}
